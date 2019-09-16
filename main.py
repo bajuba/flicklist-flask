@@ -12,7 +12,7 @@ page_header = """
         <title>FlickList</title>
     </head>
     <body>
-        <h1>FlickList</h1>
+        <h1>FlickList is cool</h1>
 """
 
 page_footer = """
