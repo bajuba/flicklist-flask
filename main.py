@@ -40,8 +40,15 @@ add_form = """
 crossoff_form = """
 <form action="/crossoff" method="post">
         
-            Movie Name
-            <input type="submit" id="crossed-off-movie" name="crossed-off-movie" value="crossoff"/>
+            I want to cross off 
+            <select id="crossed-off-movie" name="crossed-off-movie">
+                <option>movie 1</option>
+                <option>movie 2</option>
+                <option>movie 3</option>
+                <option>movie 4</option>
+                <option>movie 5</option>
+            </select> from my Watchlist
+            <input type="submit"  value="crossoff"/>
             crossoff.
         
     </form>
@@ -56,8 +63,8 @@ crossoff_form = """
 
 @app.route("/crossoff", methods=['POST'])
 def crossoff_movie():
-    crossed_off_movie = request.form['crossed-off-movie']
-    return crossed_off_movie + " has been crossed off"    
+    crossed_off_movie = request.form.get('crossed-off-movie')
+    return "<strike>"+crossed_off_movie + "</strike> has been crossed off"    
 
 # TODO:
 # modify the crossoff_form above to use a dropdown (<select>) instead of
