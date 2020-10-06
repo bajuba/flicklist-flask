@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect
 import cgi
-
+#TODOlow
 app = Flask(__name__)
 
 app.config['DEBUG'] = True      # displays runtime errors in the browser, too
@@ -89,10 +89,13 @@ def crossoff_movie():
 def add_movie():
     new_movie = request.form['new-movie']
 
-    # TODO 
+    new_movie = cgi.escape(new_movie)
+    # TODOhigh
     # 'escape' the user's input so that if they typed HTML, it doesn't mess up our site
+
+
     
-    # TODO 
+    # TODOcritical
     # if the user typed nothing at all, redirect and tell them the error
 
     # TODO 
