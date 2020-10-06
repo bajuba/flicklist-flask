@@ -36,6 +36,10 @@ def get_current_watchlist():
     # returns user's current watchlist--hard coded for now
     return [ "Star Wars", "Minions", "Freaky Friday", "My Favorite Martian" ]
 
+def get_terrible_movies():
+    # returns user's current watchlist--hard coded for now
+    return [ "Flyin' Ryan", "The Amazing Bulk"]
+
 # a form for crossing off watched movies
 # (first we build a dropdown from the current watchlist items)
 crossoff_options = ""
@@ -98,9 +102,11 @@ def add_movie():
         error = "You did not enter a name."
         return redirect("/?error=" + error)
 
-
-    # TODO 
-    # if the user wants to add a terrible movie, redirect and tell them not to add it b/c it sucks
+    for movie in get_terrible_movies():
+        if movie.lower() == new_movie.lower():
+            error = "DO NOT ADD THIS MOVIE!"
+            return redirect("/?error=" + error)
+    
 
     # build response content
     new_movie_element = "<strong>" + new_movie + "</strong>"
