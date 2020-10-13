@@ -45,12 +45,7 @@ def crossoff_movie():
         # redirect to homepage, and include error as a query parameter in the URL
         return redirect("/?error=" + error)
 
-    # if we didn't redirect by now, then all is well
-    crossed_off_movie_element = "<strike>" + crossed_off_movie + "</strike>"
-    confirmation = crossed_off_movie_element + " has been crossed off your Watchlist."
-    content = "<p>" + confirmation + "</p>"
-
-    return content
+    return render_template('crossoff.html',crossed_off_movie = crossed_off_movie)
 
 
 @app.route("/add", methods=['POST'])
