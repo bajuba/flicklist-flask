@@ -81,19 +81,19 @@ def add_movie():
 
 @app.route("/")
 def index():
-    edit_header = "<h2>Edit My Watchlist</h2>"
+    
 
     # if we have an error, make a <p> to display it
     error = request.args.get("error")
     if error:
         error_esc = cgi.escape(error, quote=True)
-        error_element = '<p class="error">' + error_esc + '</p>'
+        error_element = error_esc
     else:
         error_element = ''
 
     
 
-    return render_template('edit.html',movie_list = get_current_watchlist())
+    return render_template('edit.html',movie_list = get_current_watchlist(),error = error_element)
 
 
 app.run()
