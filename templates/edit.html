@@ -6,7 +6,12 @@
   <h2>My Watchlist</h2>
   <ul>
     {% for movie in watchlist: %}
-    <li>{{ movie }}</li>
+    <li>{{ movie }}
+      <form action="/crossoff" method="POST" style="display:inline;">
+      <input type="hidden" name="crossed-off-movie" value="'{{ movie }}">
+      <input type="submit" value="I watched it!" ></submit>
+      </form>
+    </li>
     {% endfor %}
   </ul>
 {% endif %}
@@ -22,21 +27,7 @@
     <input type="submit" value="Add It"/>
 </form>
 
-{% if watchlist|length > 0 %}
-<form action="/crossoff" method="post">
-    <label>
-        I want to cross off
-        <select name="crossed-off-movie">
-            <!-- need to loop over watchlist to create option elements -->
-            {% for movie in watchlist: %}
-                <option value="{{ movie }}">{{ movie }}</option>
-            {% endfor %}
-        </select>
-        from my watchlist.
-    </label>
-    <input type="submit" value="Cross It Off"/>
-</form>
-{% endif %}
+
 
 <!-- We added this link to the ratings page, but it won't work till you make the ratings.html file -->
 <h2><a href="/ratings">Ratings</a></h2>

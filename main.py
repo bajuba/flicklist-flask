@@ -16,7 +16,7 @@ terrible_movies = [
 
 def get_current_watchlist():
     # returns user's current watchlist--hard coded for now
-    return [ "Star Wars", "Minions", "Freaky Friday", "My Favorite Martian" ]
+    return [ "Best Movie Ever","Star Wars", "Minions", "Freaky Friday", "My Favorite Martian" ]
 
 # TODO: 
 # Modify "My Watchlist" so that you eliminate the need for the "crossoff" form in edit.html. 
