@@ -8,7 +8,7 @@
     {% for movie in watchlist: %}
     <li>{{ movie }}
       <form action="/crossoff" method="POST" style="display:inline;">
-      <input type="hidden" name="crossed-off-movie" value="'{{ movie }}">
+      <input type="hidden" name="crossed-off-movie" value="{{ movie }}">
       <input type="submit" value="I watched it!" ></submit>
       </form>
     </li>

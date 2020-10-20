@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if watchedlist|length > 0 %}
+  <h2>My Watched List</h2>
+  
+    {% for movie in watchedlist: %}
+    <li>{{ movie }}
+      <form action="/crossoff" method="POST" style="display:inline;">
+        <select>
+            <option>"How was it?"</option>
+            <option>"*"</option>
+            <option>"**"</option>
+            <option>"***"</option>
+        </select>
+      <input type="submit" value="Rate It!" ></submit>
+      </form>
+    </li>
+    {% endfor %}
+</select>
+{% endif %}
+
+
+
+{% endblock %}

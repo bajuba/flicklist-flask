@@ -1,6 +1,10 @@
 from flask import Flask, request, redirect, render_template
 import cgi
 
+#use print to output to the web server terminal
+def printBar():
+    print("**************\n****************")
+
 app = Flask(__name__)
 
 app.config['DEBUG'] = True      # displays runtime errors in the browser, too
@@ -47,6 +51,9 @@ def get_current_watchlist():
 # TODO: 
 # create a rate_movie function that handles a post request on /rating-confirmation and 
 # renders the `rating-confirmation` template.
+@app.route("/ratings")
+def ratings():
+    return render_template("ratings.html",watchedlist=get_current_watchlist())
 
 @app.route("/crossoff", methods=['POST'])
 def crossoff_movie():
@@ -87,6 +94,8 @@ def add_movie():
 @app.route("/")
 def index():
     encoded_error = request.args.get("error")
+    # printBar()
+    # print(get_current_watchlist())
     return render_template('edit.html', watchlist=get_current_watchlist(), error=encoded_error and cgi.escape(encoded_error, quote=True))
 
 app.run()
