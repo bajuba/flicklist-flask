@@ -51,6 +51,17 @@ def get_current_watchlist():
 # TODO: 
 # create a rate_movie function that handles a post request on /rating-confirmation and 
 # renders the `rating-confirmation` template.
+@app.route("/rating-confirmation", methods=['POST'])
+def rating_confirmation():
+    movieValue = request.form['movie']
+    starsValue = request.form['rating']
+    if starsValue == "How was it?":
+        return redirect("/ratings")
+
+    #TODO update the form names
+    
+    return render_template("rating-confirmation.html",movie=movieValue,stars=starsValue)
+
 @app.route("/ratings")
 def ratings():
     return render_template("ratings.html",watchedlist=get_current_watchlist())

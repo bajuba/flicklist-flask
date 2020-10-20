@@ -7,13 +7,14 @@
   
     {% for movie in watchedlist: %}
     <li>{{ movie }}
-      <form action="/crossoff" method="POST" style="display:inline;">
-        <select>
-            <option>"How was it?"</option>
-            <option>"*"</option>
-            <option>"**"</option>
-            <option>"***"</option>
+      <form action="/rating-confirmation" method="POST" style="display:inline;">
+        <select name="rating">
+            <option value="How was it?">How was it?</option>
+            <option value="*">*</option>
+            <option value="**">**</option>
+            <option value="***">***</option>
         </select>
+        <input type="hidden" name="movie" value="{{movie}}">
       <input type="submit" value="Rate It!" ></submit>
       </form>
     </li>
