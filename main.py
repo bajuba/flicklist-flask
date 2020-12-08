@@ -2,6 +2,7 @@ from flask import request, redirect, render_template, session, flash
 # from flask_sqlalchemy import SQLAlchemy
 # from models import User, Movie
 import cgi
+from bcrypt import gensalt, hashpw, checkpw
 from app import app, db
 from models import User, Movie
 
@@ -30,7 +31,7 @@ def login():
         users = User.query.filter_by(email=email)
         if users.count() == 1:
             user = users.first()
-            if password == user.password:
+            if checkpw(password.encode("utf-8"),user.hash.encode("utf-8")):
                 session['user'] = user.email
                 flash('welcome back, '+user.email)
                 return redirect("/")
@@ -53,7 +54,12 @@ def register():
         if password != verify:
             flash('passwords did not match')
             return redirect('/register')
-        user = User(email=email, password=password)
+        #hash that password
+        salt = gensalt()
+        hash = hashpw(password.encode('utf-8'), salt)
+
+        user = User(email=email, hash=hash)
+
         db.session.add(user)
         db.session.commit()
         session['user'] = user.email
